@@ -52,6 +52,7 @@ export default function QuizList() {
     await axiosClient.post(`/quizzes/${selectedQuiz}/questions`, {
       questionIds: selectedQuestions,
     });
+    fetchQuizzes();
     setShowAddQ(false);
     setSelectedQuestions([]);
   };
