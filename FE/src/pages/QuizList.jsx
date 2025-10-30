@@ -185,25 +185,21 @@ export default function QuizList() {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            {questions.map((q) => {
-              const id = q.id;
-              const checked = selectedQuestions.includes(id);
-
-              return (
-                <Form.Check
-                  key={id}
-                  type="checkbox"
-                  label={q.text}
-                  checked={checked}
-                  onChange={() =>
-                    setSelectedQuestions((prev) =>
-                      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
-                    )
-                  }
-                  className="mb-2"
-                />
-              );
-            })}
+            {questions.map((q) => (
+              <Form.Check
+                key={q.id}
+                type="checkbox"
+                label={q.text}
+                onChange={(e) => {
+                  if (e.target.checked)
+                    setSelectedQuestions([...selectedQuestions, q.id]);
+                  else
+                    setSelectedQuestions(
+                      selectedQuestions.filter((id) => id !== q.id)
+                    );
+                }}
+              />
+            ))}
           </Form>
           <Button className="mt-3" onClick={handleAddQuestions}>
             Add Selected
