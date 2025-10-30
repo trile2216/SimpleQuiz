@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "https://sdn302-zc12.onrender.com/",
+  baseURL: import.meta.env.VITE_API_URL || "https://simplequiz-eap5.onrender.com",
   headers: { "Content-Type": "application/json" },
 });
 

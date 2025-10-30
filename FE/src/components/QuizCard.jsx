@@ -18,7 +18,7 @@ export default function QuizCard({ quiz }) {
           <Button 
             variant="primary" 
             size="sm"
-            onClick={() => navigate(`/quiz/${quiz._id}`)}
+            onClick={() => navigate(`/quiz/${quiz.id}`)}
           >
             <PlayCircleOutlined /> Start
           </Button>

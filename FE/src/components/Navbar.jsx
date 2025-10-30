@@ -9,7 +9,7 @@ const Navbar = () => {
   return (
     <BsNavbar bg="dark" variant="dark" expand="lg">
       <Container>
-        <BsNavbar.Brand as={Link} to="/">� Quiz System</BsNavbar.Brand>
+        <BsNavbar.Brand as={Link} to="/">Quizzes App</BsNavbar.Brand>
         <BsNavbar.Toggle aria-controls="basic-navbar-nav" />
         <BsNavbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">

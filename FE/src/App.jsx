@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
@@ -9,6 +8,7 @@ import QuizList from "./pages/QuizList";
 import QuizDetail from "./pages/QuizDetail";
 import QuestionList from "./pages/QuestionList";
 import AdminPanel from "./pages/AdminPanel";
+import { AuthProvider } from "./context/AuthProvider";
 
 export default function App() {
   return (

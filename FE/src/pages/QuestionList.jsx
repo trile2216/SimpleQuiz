@@ -31,7 +31,7 @@ export default function QuestionList() {
       const res = await axiosClient.get('/questions');
       
       if (user && !user.admin) {
-        const filtered = res.data.filter(q => q.author === user._id);
+        const filtered = res.data.filter(q => q.author === user.id);
         setMyQuestions(filtered);
       } else {
         setMyQuestions(res.data);
@@ -71,7 +71,7 @@ export default function QuestionList() {
   };
 
   const handleEdit = (q) => {
-    if (!user.admin && q.author !== user._id) {
+    if (!user.admin && q.author !== user.id) {
       setError('You can only edit your own questions!');
       return;
     }
@@ -82,13 +82,13 @@ export default function QuestionList() {
       correctAnswerIndex: q.correctAnswerIndex,
       keywords: q.keywords?.join(', ') || '',
     });
-    setEditingId(q._id);
+    setEditingId(q.id);
     setShowModal(true);
   };
 
   const handleDelete = async (id) => {
-    const question = myQuestions.find(q => q._id === id);
-    if (!user.admin && question?.author !== user._id) {
+    const question = myQuestions.find(q => q.id === id);
+    if (!user.admin && question?.author !== user.id) {
       setError('You can only delete your own questions!');
       return;
     }
@@ -111,7 +111,7 @@ export default function QuestionList() {
   };
 
   const canEditDelete = (question) => {
-    return user.admin || question.author === user._id;
+    return user.admin || question.author === user.id;
   };
 
   return (
@@ -159,7 +159,7 @@ export default function QuestionList() {
             </tr>
           ) : (
             myQuestions.map((q, index) => (
-              <tr key={q._id}>
+              <tr key={q.id}>
                 <td>{index + 1}</td>
                 <td>{q.text}</td>
                 <td>{q.options.join(', ')}</td>
@@ -172,7 +172,7 @@ export default function QuestionList() {
                       <Button size='sm' onClick={() => handleEdit(q)} className='me-1'>
                         <EditOutlined />
                       </Button>
-                      <Button size='sm' variant='danger' onClick={() => handleDelete(q._id)}>
+                      <Button size='sm' variant='danger' onClick={() => handleDelete(q.id)}>
                         <DeleteOutlined />
                       </Button>
                     </>

@@ -20,7 +20,7 @@ const cors = require("cors");
 // Set FRONTEND_URL to the deployed FE origin (e.g. https://your-app.onrender.com)
 const allowedOrigins = [
   process.env.FRONTEND_URL || "http://localhost:5173",
-  "https://sdn302-fe.onrender.com",
+  "https://quizzes-app-eight.vercel.app/",
 ];
 
 const corsOptions = {

@@ -57,7 +57,7 @@ export default function QuizList() {
   };
 
   const handleOpenEdit = (quiz) => {
-    setEditingQuizId(quiz._id);
+    setEditingQuizId(quiz.id);
     setEditForm({ title: quiz.title, description: quiz.description });
     setShowEditModal(true);
   };
@@ -98,7 +98,7 @@ export default function QuizList() {
         </thead>
         <tbody>
           {quizzes.map((q) => (
-            <tr key={q._id}>
+            <tr key={q.id}>
               <td>{q.title}</td>
               <td>{q.description}</td>
               <td>{q.questions?.length || 0}</td>
@@ -107,7 +107,7 @@ export default function QuizList() {
                   size="sm"
                   variant="info"
                   className="me-2"
-                  onClick={() => navigate(`/quiz/${q._id}`)}
+                  onClick={() => navigate(`/quiz/${q.id}`)}
                 >
                   <EyeOutlined /> 
                 </Button>
@@ -118,7 +118,7 @@ export default function QuizList() {
                       className="me-2"
                       onClick={() => {
                         fetchQuestions();
-                        setSelectedQuiz(q._id);
+                        setSelectedQuiz(q.id);
                         setShowAddQ(true);
                       }}
                     >
@@ -135,7 +135,7 @@ export default function QuizList() {
                     <Button
                       size="sm"
                       variant="danger"
-                      onClick={() => handleDelete(q._id)}
+                      onClick={() => handleDelete(q.id)}
                     >
                       <DeleteOutlined />
                     </Button>
@@ -186,7 +186,7 @@ export default function QuizList() {
           <Form>
             {questions.map((q) => (
               <Form.Check
-                key={q._id}
+                key={q.id}
                 type="checkbox"
                 label={q.text}
                 onChange={(e) => {
@@ -194,7 +194,7 @@ export default function QuizList() {
                     setSelectedQuestions([...selectedQuestions, q._id]);
                   else
                     setSelectedQuestions(
-                      selectedQuestions.filter((id) => id !== q._id)
+                      selectedQuestions.filter((id) => id !== q.id)
                     );
                 }}
               />

@@ -21,11 +21,11 @@ export default function Login() {
       // Lưu token vào localStorage
       localStorage.setItem("token", token);
 
-      // Decode JWT token để lấy _id
+      // Decode JWT token để lấy id
       const payload = JSON.parse(atob(token.split(".")[1]));
 
       let userData = {
-        _id: payload._id,
+        id: payload.id,
         username: form.username,
         admin: false,
       };
@@ -33,10 +33,10 @@ export default function Login() {
       try {
         const usersRes = await axiosClient.get("/users");
         // Nếu gọi thành công => user là admin
-        const currentUser = usersRes.data.find((u) => u._id === payload._id);
+        const currentUser = usersRes.data.find((u) => u.id === payload.id);
         if (currentUser) {
           userData = {
-            _id: currentUser._id,
+            id: currentUser.id,
             username: currentUser.username,
             admin: currentUser.admin || false,
           };

@@ -50,7 +50,7 @@ export default function QuizDetail() {
       <h5 className="mb-3">Questions List</h5>
       {quiz.questions && quiz.questions.length > 0 ? (
         quiz.questions.map((question, qIdx) => (
-          <Card key={question._id} className="mb-3 shadow-sm">
+          <Card key={question.id} className="mb-3 shadow-sm">
             <Card.Body>
               <h6 className="mb-3">
                 <Badge bg="secondary" className="me-2">#{qIdx + 1}</Badge>

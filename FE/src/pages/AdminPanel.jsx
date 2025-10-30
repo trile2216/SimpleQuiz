@@ -82,7 +82,7 @@ export default function AdminPanel() {
             </thead>
             <tbody>
               {stats.users.map((user, idx) => (
-                <tr key={user._id}>
+                <tr key={user.id}>
                   <td>{idx + 1}</td>
                   <td>{user.username}</td>
                   <td>
