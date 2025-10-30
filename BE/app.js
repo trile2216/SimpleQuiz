@@ -43,7 +43,6 @@ app.use(cors(corsOptions));
 // Ensure preflight requests use the same options and respond with the CORS headers
 app.options("*", cors(corsOptions));
 
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
