@@ -14,6 +14,35 @@ var app = express();
 const connectDB = require('./config/db');
 connectDB();
 
+const cors = require("cors");
+
+// Allow configuring frontend origin via environment variable on Render.
+// Set FRONTEND_URL to the deployed FE origin (e.g. https://your-app.onrender.com)
+const allowedOrigins = [
+  process.env.FRONTEND_URL || "http://localhost:5173",
+  "https://sdn302-fe.onrender.com",
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like server-to-server or Postman)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    return callback(new Error("Not allowed by CORS"));
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+// Debug: print CORS configuration at startup so we can verify Render picked up FRONTEND_URL
+console.log('CORS allowedOrigins:', allowedOrigins);
+console.log('FRONTEND_URL env:', process.env.FRONTEND_URL);
+
+app.use(cors(corsOptions));
+// Ensure preflight requests use the same options and respond with the CORS headers
+app.options("*", cors(corsOptions));
+
 
 app.use(logger('dev'));
 app.use(express.json());

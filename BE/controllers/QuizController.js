@@ -9,7 +9,7 @@ exports.createQuiz = async (req, res) => {
 
     if (questions != null)  {
         const createdQuestions = await Question.create(questions);
-        const questionIds = createdQuestions.map(q => q._id);
+        const questionIds = createdQuestions.map(q => q.id);
         await Quiz.create({ title, description, questions: questionIds });
         return res.status(201).json({message: 'Tạo quiz và câu hỏi thành công'});
     }
@@ -68,7 +68,7 @@ exports.deleteQuiz = async (req, res) => {
       }
 
 
-      await Question.deleteMany({ _id: { $in: quiz.questions } });
+      await Question.deleteMany({ id: { $in: quiz.questions } });
       await quiz.deleteOne();
 
       res.status(200).json({ message: 'Xóa quiz thành công' });
@@ -134,7 +134,7 @@ exports.addQuestionToQuiz = async (req, res) => {
       
       const question = new Question(req.body);
       await question.save();
-      quiz.questions.push(question._id);
+      quiz.questions.push(question.id);
       await quiz.save();
       res.status(201).json({ message: 'Thêm câu hỏi vào quiz thành công'});
   } catch (error) {
@@ -149,7 +149,7 @@ exports.addQuestionsToQuiz = async (req, res) => {
           return res.status(404).json({ message: 'Quiz không tồn tại' });
       }
       const questions = await Question.insertMany(req.body);
-      const questionIds = questions.map(q => q._id);
+      const questionIds = questions.map(q => q.id);
       quiz.questions.push(...questionIds);
       await quiz.save();
       res.status(201).json({ message: 'Thêm nhiều câu hỏi vào quiz thành công'});
@@ -182,11 +182,11 @@ exports.addExistingQuestionsToQuiz = async (req, res) => {
       if (!Array.isArray(questionIds) || questionIds.length === 0) {
           return res.status(400).json({ message: 'Dữ liệu câu hỏi không hợp lệ' });
       }
-      const validQuestions = await Question.find({ _id: { $in: questionIds } });
+      const validQuestions = await Question.find({ id: { $in: questionIds } });
       if (validQuestions.length === 0) {
           return res.status(400).json({ message: 'Không có câu hỏi hợp lệ để thêm' });
       } 
-      const validQuestionIds = validQuestions.map(q => q._id);
+      const validQuestionIds = validQuestions.map(q => q.id);
       quiz.questions.push(...validQuestionIds);
       await quiz.save();
       res.status(200).json({ message: 'Thêm câu hỏi hiện có vào quiz thành công' });

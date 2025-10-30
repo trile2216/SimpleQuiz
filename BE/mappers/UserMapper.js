@@ -1,6 +1,6 @@
 exports.toUserDTO = (user) => {
     return {
-        id: user._id,
+        id: user.id,
         username: user.username,
         admin: user.admin
     };
