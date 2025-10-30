@@ -21,7 +21,7 @@ export default function QuestionList() {
     text: '',
     options: ['', '', '', ''],
     correctAnswerIndex: 0,
-    keywords: '',
+    keyword: '',
   });
   const [editingId, setEditingId] = useState(null);
   const [error, setError] = useState('');
@@ -53,7 +53,7 @@ export default function QuestionList() {
     e.preventDefault();
     const payload = {
       ...form,
-      keywords: form.keywords.split(',').map((k) => k.trim()).filter(k => k),
+      keyword: form.keyword.split(',').map((k) => k.trim()).filter(k => k),
     };
 
     try {
@@ -80,7 +80,7 @@ export default function QuestionList() {
       text: q.text,
       options: q.options,
       correctAnswerIndex: q.correctAnswerIndex,
-      keywords: q.keywords?.join(', ') || '',
+      keyword: q.keyword?.join(', ') || '',
     });
     setEditingId(q.id);
     setShowModal(true);
@@ -107,7 +107,7 @@ export default function QuestionList() {
   const handleClose = () => {
     setShowModal(false);
     setEditingId(null);
-    setForm({ text: '', options: ['', '', '', ''], correctAnswerIndex: 0, keywords: '' });
+    setForm({ text: '', options: ['', '', '', ''], correctAnswerIndex: 0, keyword: '' });
   };
 
   const canEditDelete = (question) => {
@@ -164,7 +164,7 @@ export default function QuestionList() {
                 <td>{q.text}</td>
                 <td>{q.options.join(', ')}</td>
                 <td><strong>{q.options[q.correctAnswerIndex]}</strong></td>
-                <td>{q.keywords?.join(', ') || 'N/A'}</td>
+                <td>{q.keyword?.join(', ') || 'N/A'}</td>
                 {user.admin && <td><small>{q.author || 'N/A'}</small></td>}
                 <td>
                   {canEditDelete(q) ? (
@@ -236,8 +236,8 @@ export default function QuestionList() {
             <Form.Group className='mb-3'>
               <Form.Label>Keywords (comma separated)</Form.Label>
               <Form.Control
-                value={form.keywords}
-                onChange={(e) => setForm({ ...form, keywords: e.target.value })}
+                value={form.keyword}
+                onChange={(e) => setForm({ ...form, keyword: e.target.value })}
                 placeholder='e.g., javascript, react, programming'
               />
               <Form.Text className='text-muted'>

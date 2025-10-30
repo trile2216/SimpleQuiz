@@ -81,9 +81,9 @@ export default function QuizDetail() {
                   </Badge>
                 </p>
 
-                {question.keywords && question.keywords.length > 0 && (
+                {question.keyword && question.keyword.length > 0 && (
                   <p className="mb-0 text-muted">
-                    <small><strong>Keywords:</strong> {question.keywords.join(", ")}</small>
+                    <small><strong>Keywords:</strong> {question.keyword.join(", ")}</small>
                   </p>
                 )}
               </div>

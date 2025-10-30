@@ -152,7 +152,7 @@ exports.addQuestionsToQuiz = async (req, res) => {
       const questionIds = questions.map(q => q.id);
       quiz.questions.push(...questionIds);
       await quiz.save();
-      res.status(201).json({ message: 'Thêm nhiều câu hỏi vào quiz thành công'});
+      res.status(201).json({ message: 'Thêm câu hỏi vào quiz thành công'});
   } catch (error) {
       res.status(500).json({ message: 'Lỗi khi thêm câu hỏi vào quiz', error });
   }
