@@ -10,5 +10,5 @@ router.get("/:id/populate", QuizController.getQuizWithCapitalQuestions);
 router.get("/:id/populate/:word", QuizController.getQuizWithQuestions);
 router.put("/:id", verifyUser, verifyAdmin, QuizController.updateQuiz);
 router.delete("/:id", verifyUser, verifyAdmin, QuizController.deleteQuiz);
-router.post("/:id/questions", verifyUser, verifyAdmin, QuizController.addQuestionsToQuiz);
+router.post("/:id/questions", verifyUser, verifyAdmin, QuizController.addExistingQuestionsToQuiz);
 module.exports = router;
