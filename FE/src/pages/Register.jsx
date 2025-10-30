@@ -12,10 +12,10 @@ export default function Register() {
     e.preventDefault();
     try {
       await axiosClient.post("/users/register", form);
-      setMsg("✅ Registration successful! You can now login.");
-      setTimeout(() => navigate("/login"), 1500);
+      setMsg("Đăng ký thành công! Chuyển hướng đến trang đăng nhập...");
+      setTimeout(() => navigate("/login"), 500);
     } catch (err) {
-      setMsg("❌ Registration failed");
+      setMsg("Đăng ký thất bại");
     }
   };
 

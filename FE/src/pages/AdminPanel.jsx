@@ -77,7 +77,6 @@ export default function AdminPanel() {
                 <th>#</th>
                 <th>Username</th>
                 <th>Admin</th>
-                <th>Created At</th>
               </tr>
             </thead>
             <tbody>
@@ -92,7 +91,6 @@ export default function AdminPanel() {
                       <span className="badge bg-secondary">User</span>
                     )}
                   </td>
-                  <td>{new Date(user.createdAt).toLocaleDateString()}</td>
                 </tr>
               ))}
             </tbody>

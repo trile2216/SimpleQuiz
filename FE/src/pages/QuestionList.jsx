@@ -66,7 +66,7 @@ export default function QuestionList() {
       handleClose();
       setError('');
     } catch (err) {
-      setError(err.response?.data?.error || 'Failed to save question');
+      setError(err.response?.data?.message || 'Failed to save question');
     }
   };
 
@@ -99,7 +99,7 @@ export default function QuestionList() {
         fetchQuestions();
         setError('');
       } catch (err) {
-        setError(err.response?.data?.error || 'Failed to delete question.');
+        setError(err.response?.data?.message || 'Failed to delete question.');
       }
     }
   };
