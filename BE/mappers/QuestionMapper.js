@@ -5,6 +5,9 @@ exports.toQuestionDTO = (question) => {
         options: question.options,
         correctAnswerIndex: question.correctAnswerIndex,
         keyword: question.keyword || [],
-        author: question.author,
+        author: {
+            id: question.author.id  ,
+            username: question.author.username
+        }
     };  
 };

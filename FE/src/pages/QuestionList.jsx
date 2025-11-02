@@ -119,7 +119,7 @@ export default function QuestionList() {
       <Row>
         <Col className='d-flex justify-content-between align-items-center mb-3'>
           <div>
-            <h3>{user.admin ? 'All Questions (Admin)' : 'My Questions'}</h3>
+            <h3>{user.admin ? 'All Questions' : 'My Questions'}</h3>
             <small className='text-muted'>
               {user.admin 
                 ? `Total: ${myQuestions.length} questions` 
@@ -165,7 +165,7 @@ export default function QuestionList() {
                 <td>{q.options.join(', ')}</td>
                 <td><strong>{q.options[q.correctAnswerIndex]}</strong></td>
                 <td>{q.keyword?.join(', ') || 'N/A'}</td>
-                {user.admin && <td><small>{q.author || 'N/A'}</small></td>}
+                {user.admin && <td><small>{q.author.username || 'N/A'}</small></td>}
                 <td>
                   {canEditDelete(q) ? (
                     <>

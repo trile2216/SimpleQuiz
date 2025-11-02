@@ -14,7 +14,7 @@ exports.createQuestion = async (req, res) => {
 
 exports.getAllQuestions = async (req, res) => {
     try{
-        const questions = await Question.find();
+        const questions = await Question.find().populate('author', 'username');
         if (!questions || questions.length === 0) {
             return res.status(404).json({ message: 'Chưa có câu hỏi nào' });
         }
