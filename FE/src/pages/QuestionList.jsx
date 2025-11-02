@@ -31,7 +31,7 @@ export default function QuestionList() {
       const res = await axiosClient.get('/questions');
       
       if (user && !user.admin) {
-        const filtered = res.data.filter(q => q.author === user.id);
+        const filtered = res.data.filter(q => q.author.id === user.id);
         setMyQuestions(filtered);
       } else {
         setMyQuestions(res.data);
@@ -71,7 +71,7 @@ export default function QuestionList() {
   };
 
   const handleEdit = (q) => {
-    if (!user.admin && q.author !== user.id) {
+    if (!user.admin && q.author.id !== user.id) {
       setError('You can only edit your own questions!');
       return;
     }
