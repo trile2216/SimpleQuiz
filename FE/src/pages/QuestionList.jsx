@@ -111,7 +111,7 @@ export default function QuestionList() {
   };
 
   const canEditDelete = (question) => {
-    return user.admin || question.author === user.id;
+    return user.admin || question.author.id === user.id;
   };
 
   return (
