@@ -182,7 +182,7 @@ exports.addExistingQuestionsToQuiz = async (req, res) => {
       if (!Array.isArray(questionIds) || questionIds.length === 0) {
           return res.status(400).json({ message: 'Dữ liệu câu hỏi không hợp lệ' });
       }
-      const validQuestions = await Question.find({ id: { $in: questionIds } });
+      const validQuestions = await Question.find({ _id: { $in: questionIds } });
       if (validQuestions.length === 0) {
           return res.status(400).json({ message: 'Không có câu hỏi hợp lệ để thêm' });
       } 
