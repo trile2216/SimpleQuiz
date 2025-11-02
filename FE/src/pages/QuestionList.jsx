@@ -51,6 +51,7 @@ export default function QuestionList() {
 
   const handleSave = async (e) => {
     e.preventDefault();
+    handleClose();
     const payload = {
       ...form,
       keyword: form.keyword.split(',').map((k) => k.trim()).filter(k => k),
@@ -63,7 +64,6 @@ export default function QuestionList() {
         await axiosClient.post('/questions', payload);
       }
       fetchQuestions();
-      handleClose();
       setError('');
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to save question');

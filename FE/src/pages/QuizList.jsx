@@ -50,11 +50,11 @@ export default function QuizList() {
   };
 
   const handleAddQuestions = async () => {
+    setShowAddQ(false);
     await axiosClient.post(`/quizzes/${selectedQuiz}/questions`, {
       questionIds: selectedQuestions,
     });
     fetchQuizzes();
-    setShowAddQ(false);
     setSelectedQuestions([]);
   };
 
@@ -67,9 +67,9 @@ export default function QuizList() {
   const handleSaveEdit = async (e) => {
     e.preventDefault();
     try {
+      setShowEditModal(false);
       await axiosClient.put(`/quizzes/${editingQuizId}`, editForm);
       fetchQuizzes();
-      setShowEditModal(false);
       setEditForm({ title: "", description: "" });
       setEditingQuizId(null);
     } catch (err) {
