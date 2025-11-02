@@ -27,6 +27,7 @@ export default function QuizList() {
   const fetchQuestions = async () => {
     const res = await axiosClient.get("/questions");
     setQuestions(res.data);
+    
   };
 
   useEffect(() => {
